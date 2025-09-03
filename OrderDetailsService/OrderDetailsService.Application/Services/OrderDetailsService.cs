@@ -95,6 +95,30 @@ namespace OrderDetailsService.Application.Services
             return await _statePersistenceService.GetPersistedStateAsync(orderNumber);
         }
 
+        /// <inheritdoc />
+        public async Task<ExportToSapResponse> ExportToSapAsync(string orderNumber)
+        {
+            // Simulação de exportação para SAP.
+            // Em um cenário real, aqui seria feita a integração com o SAP (ex: via RFC, API REST, etc).
+            // Para este exemplo, apenas retorna sucesso e um número fictício de documento SAP.
+
+            if (string.IsNullOrWhiteSpace(orderNumber))
+                throw new ArgumentException("Order number must be provided.", nameof(orderNumber));
+
+            // Aqui você pode adicionar lógica real de integração SAP.
+            // Exemplo: var sapResult = await _sapIntegrationService.ExportOrderAsync(orderNumber);
+
+            // Simulação de sucesso:
+            var response = new ExportToSapResponse
+            {
+                Success = true,
+                Message = $"Pedido {orderNumber} exportado com sucesso para o SAP.",
+                SapDocumentNumber = $"SAP{orderNumber.PadLeft(10, '0')}"
+            };
+
+            return await Task.FromResult(response);
+        }
+
         #region Mapping Methods
 
         private static OrderDetailsDto MapOrderToDto(Order order, OrderDetailStatePersistenceDto state)

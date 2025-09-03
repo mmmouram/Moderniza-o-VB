@@ -125,5 +125,17 @@ namespace OrderDetailsService.API.Controllers
             var state = await _orderDetailsService.GetPersistedStateAsync(orderNumber);
             return Ok(state);
         }
+
+        /// <summary>
+        /// Exports the order data to SAP.
+        /// </summary>
+        /// <param name="orderNumber">The order number to export.</param>
+        /// <returns>Response DTO with export result and SAP document number if available.</returns>
+        [HttpPost("{orderNumber}/export-to-sap")]
+        public async Task<ActionResult<ExportToSapResponse>> ExportToSap(string orderNumber)
+        {
+            var response = await _orderDetailsService.ExportToSapAsync(orderNumber);
+            return Ok(response);
+        }
     }
 }

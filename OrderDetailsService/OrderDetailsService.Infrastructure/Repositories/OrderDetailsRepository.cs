@@ -154,5 +154,20 @@ namespace OrderDetailsService.Infrastructure.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(s => s.OrderNumber == orderNumber);
         }
+
+        /// <inheritdoc />
+        public async Task<bool> ExportOrderToSapAsync(string orderNumber)
+        {
+            // Simulate export to SAP.
+            // In a real scenario, this would call an external SAP integration (RFC, REST API, etc).
+            // Here, we just simulate a successful export.
+            if (string.IsNullOrWhiteSpace(orderNumber))
+                return false;
+
+            // TODO: Implement real SAP integration here.
+            // For now, always return true to indicate success.
+            await Task.Delay(100); // Simulate async operation
+            return true;
+        }
     }
 }

@@ -67,5 +67,12 @@ namespace OrderDetailsService.Application.Interfaces
         /// <param name="orderNumber">The order number.</param>
         /// <returns>The persisted state DTO.</returns>
         Task<OrderDetailStatePersistenceDto> GetPersistedStateAsync(string orderNumber);
+
+        /// <summary>
+        /// Exports the order data to SAP.
+        /// </summary>
+        /// <param name="orderNumber">The order number to export.</param>
+        /// <returns>Response DTO with export result and SAP document number if available.</returns>
+        Task<ExportToSapResponse> ExportToSapAsync(string orderNumber);
     }
 }

@@ -59,5 +59,12 @@ namespace OrderDetailsService.Infrastructure.Repositories
         /// <param name="orderNumber">The order number.</param>
         /// <returns>The persisted state entity, or null if not found.</returns>
         Task<OrderDetailStatePersistence> GetPersistedStateAsync(string orderNumber);
+
+        /// <summary>
+        /// Exports the order data to SAP.
+        /// </summary>
+        /// <param name="orderNumber">The order number to export.</param>
+        /// <returns>True if export was successful, false otherwise.</returns>
+        Task<bool> ExportOrderToSapAsync(string orderNumber);
     }
 }
